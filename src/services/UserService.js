@@ -28,6 +28,20 @@ class UserService {
             return responseHandler.returnError(httpStatus.BAD_REQUEST, 'Something went wrong!');
         }
     };
+    deleteUser = async (id) => {
+        try {
+            let message = 'Successfully Registered the account! Please Verify your email.';
+
+            //if (await this.userDaom.isEmailExists(userBody.email)) {
+            //    return responseHandler.returnError(httpStatus.BAD_REQUEST, 'Email already taken');
+            //}
+            await this.userDaom.delete(id);
+
+            return responseHandler.returnSuccess(httpStatus.NO_CONTENT, message);
+        } catch (e) {
+            return responseHandler.returnError(httpStatus.BAD_REQUEST, 'Something went wrong!');
+        }
+    };
 
 }
 

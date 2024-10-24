@@ -12,6 +12,19 @@ class UserController {
         });
     };
 
+    delete = async (req, res) => {
+        
+        try {
+            await this.userService.deleteUser(req.params.id);
+
+            res.status(204).send({ message:'Silme işlemi başarılı' });
+        } catch (e) {
+            res.status(httpStatus.BAD_GATEWAY).send(e);
+        }
+    };
+
+
+
     register = async (req, res) => {
         try {
             const user = await this.userService.createUser(req.body);
