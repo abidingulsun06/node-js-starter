@@ -1,4 +1,3 @@
-const { where } = require('sequelize');
 const models = require('../models');
 
 const User = models.user;
@@ -12,7 +11,9 @@ class UserDaom {
     async delete(id) {
         return User.destroy({where:{id}});
     }
-    
+    async update(user, id) {
+        return User.update(user, {where:{id}})
+    }
 }
 
 module.exports = UserDaom;

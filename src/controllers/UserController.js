@@ -37,6 +37,21 @@ class UserController {
             res.status(httpStatus.BAD_GATEWAY).send(e);
         }
     };
+
+
+    update = async (req, res) => {
+        
+        try {
+            
+            const user =  await this.userService.updateUser(req.body, req.params.id);
+            const { status } = user.response;
+            const { message, data } = user.response;
+            res.status(user.statusCode).send({ status, message, data });
+
+        } catch (e) {
+            res.status(httpStatus.BAD_GATEWAY).send(e);
+        }
+    };
 }
 
 module.exports = UserController;

@@ -43,6 +43,25 @@ class UserService {
         }
     };
 
+    updateUser = async (userBody, id) => {
+        try {
+            let message = 'Successfully updated the account!';
+
+            //if (await this.userDaom.isEmailExists(userBody.email)) {
+            //    return responseHandler.returnError(httpStatus.BAD_REQUEST, 'Email already taken');
+            //}
+            let user = await this.userDaom.update(userBody, id);
+            console.log("isim: ", user);
+
+            return responseHandler.returnSuccess(httpStatus.CREATED, message, user);
+        } catch (e) {
+            console.log(e);
+            
+            return responseHandler.returnError(httpStatus.BAD_REQUEST, 'Something went wrong!');
+        }
+    };
+
+
 }
 
 module.exports = UserService;
